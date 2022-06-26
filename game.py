@@ -3,7 +3,16 @@ from player import *
 
 class Game:
     
-    def __init__(self,dice_roll = 0,player_turn_order = [],is_dice_rolled=False):
-        self.player_turn_order = player_turn_order
-        self.dice_roll = dice_roll
-        self.is_dice_rolled = is_dice_rolled
+    color = ["Blue","Red","Green","Yellow"]
+    turn = 0
+    is_dice_rolled=False
+    dice_roll = 0
+    player_turn_order = []
+    
+    def next_turn(self):
+        if self.turn >=3:
+            self.turn=0
+        else:
+            self.turn+=1
+        
+        
