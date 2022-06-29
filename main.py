@@ -3,20 +3,22 @@ from tkinter import font
 import pygame
 import random
 from game import Game
+from pawn import Pawn
+from player import Player
 
 #Dice Roll function
 def dice_roll():
     roll = random.randint(1,6)
     return roll
 
-game = Game()
+#Intialize the game
+game = Game(4)
+player_list = [Player("Player_1","Blue"),Player("Player_2","Red"),Player("Player_3","Green"),Player("Player_4","Yellow")]
+blue_pawn_list = [Pawn("Pawn_1","Blue"),Pawn("Pawn_2","Blue"),Pawn("Pawn_3","Blue"),Pawn("Pawn_4","Blue")]
+red_pawn_list = [Pawn("Pawn_1","Red"),Pawn("Pawn_2","Red"),Pawn("Pawn_3","Red"),Pawn("Pawn_4","Red")]
+blue_pawn_list = [Pawn("Pawn_1","Green"),Pawn("Pawn_2","Green"),Pawn("Pawn_3","Green"),Pawn("Pawn_4","Green")]
+blue_pawn_list = [Pawn("Pawn_1","Yellow"),Pawn("Pawn_2","Yellow"),Pawn("Pawn_3","Yellow"),Pawn("Pawn_4","Yellow")]
 
-for player in game.player_turn_order:
-    
-    for pawn in player.pawn_list:
-        print(player.name)
-        print(pawn.color + " " + pawn.name)
-       
 #Intialize the pygame
 pygame.init()
 
@@ -25,6 +27,7 @@ screen = pygame.display.set_mode((968,768))
 pygame.display.set_caption("Ludo Game")
 icon = pygame.image.load("Pic/icon.png")
 pygame.display.set_icon(icon)
+
 
 #Board
 board_surface = pygame.image.load("Pic/board.png")
@@ -37,7 +40,7 @@ font = pygame.font.Font("Font/Roboto-Regular.ttf",25)
 font_bold = font = pygame.font.Font("Font/Roboto-Bold.ttf",25)
 
 #Turn Box
-turn_surface = font_bold.render(game.color[game.turn]+"'s Turn",False,"Black")
+turn_surface = font_bold.render(game.color[game.turn_index]+"'s Turn",False,"Black")
 turn_rect = turn_surface.get_rect(midtop=(868,10))
 
 #Dice Box
@@ -93,7 +96,7 @@ while running:
     
     #Turn
     pygame.draw.rect(screen,"Black",pygame.Rect(768,turn_rect.top-10,200,turn_rect.bottom+20-turn_rect.top),10)
-    turn_surface = font_bold.render(game.color[game.turn]+"'s Turn",False,"Black")
+    turn_surface = font_bold.render(game.color[game.turn_index]+"'s Turn",False,"Black")
     screen.blit(turn_surface,turn_rect)
 
     #End Turn Button
