@@ -11,6 +11,12 @@ def dice_roll():
 
 game = Game()
 
+for player in game.player_turn_order:
+    
+    for pawn in player.pawn_list:
+        print(player.name)
+        print(pawn.color + " " + pawn.name)
+       
 #Intialize the pygame
 pygame.init()
 

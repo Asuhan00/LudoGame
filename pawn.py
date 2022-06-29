@@ -1,7 +1,9 @@
 class Pawn:
-    def __init__(self,in_game=True,area=0,pos=0):
+
+    def __init__(self,name,color,in_game=True,area=0,pos=0):
         self.in_game = in_game
         self.area = area
-        self.area = pos
-
+        self.pos = pos
+        self.name = name
+        self.color = color
 
